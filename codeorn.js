@@ -2794,12 +2794,11 @@ function generateAllSections() {
     : `UGS-Files/${encoded}?t=${Date.now()}`;
 
   fetch(url)
-    .then((response) => response.text())
     .then((text) => {
-      document.open();
-      document.write(text);
-      document.close();
-    });
+  const blob = new Blob([text], { type: "text/html" });
+  const url = URL.createObjectURL(blob);
+  window.open(url, "_blank");
+});
 };
         btn.style.width = "100%";
         btn.style.height = "100%";
